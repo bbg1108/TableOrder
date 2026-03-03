@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Kiosk.Views.KioskMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Kiosk.Views"
+             xmlns:Popup="clr-namespace:Kiosk.Views.Popups"
+             xmlns:vm="clr-namespace:Kiosk.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:CheckOrderPopupViewModel}">
+            <Popup:CheckOrderPopupView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SelectPaymentMethodPopupViewModel}">
+            <Popup:SelectPaymentMethodPopupView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PayPopupViewModel}">
+            <Popup:PayPopupView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PaymentSuccessPopupViewModel}">
+            <Popup:PaymentSuccessPopupView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:VoiceInteractionViewModel}">
+            <local:VoiceInteractionView/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.06*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="{Binding IsVoiceMode, Converter={StaticResource BoolToGridLengthConverter}}"/>
+        </Grid.RowDefinitions>
+
+        <local:SideBarView Grid.Row="0"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:CategoryView Grid.Column="0"/>
+            <Border Grid.Column="1" Style="{StaticResource BaseBorder}">
+                <local:MenuView/>
+            </Border>
+
+            <local:CartView Grid.Column="2"/>
+        </Grid>
+        <ContentControl Content="{Binding CurrentPopup}" Grid.RowSpan="2"
+                        Visibility="{Binding IsPopupOpen, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Style="{StaticResource BasePopupStyle}"/>
+
+        <ContentControl Content="{Binding VoiceInteractionViewModel}" Grid.Row="2"/>
+    </Grid>
+</UserControl>

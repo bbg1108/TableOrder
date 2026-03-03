@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Kiosk.Views.FirstView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kiosk.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding NormalOrderCommand}" Style="{StaticResource ImageButtonStyle}"
+                    Width="300" Height="300" Margin="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Source="../1.Common/Resources/Images/Finger.png" Stretch="Uniform"/>
+                    <TextBlock Text="일반 주문" Grid.Row="1" Style="{StaticResource BoldFont}" Margin="20"/>
+                </Grid>
+            </Button>
+            <Button Command="{Binding VoiceOrderCommand}" Style="{StaticResource ImageButtonStyle}"
+                    Width="300" Height="300" Margin="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Source="../1.Common/Resources/Images/Mic.png" Stretch="Uniform"/>
+                    <TextBlock Text="음성 주문" Grid.Row="1" Style="{StaticResource BoldFont}" Margin="20"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

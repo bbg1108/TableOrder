@@ -1,0 +1,22 @@
+﻿<Application x:Class="Kiosk.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Kiosk"
+             xmlns:converter="clr-namespace:Kiosk.Converters"
+             StartupUri="MainWindow/MainWindowView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="1.Common/Style/CommonStyle.xaml"/>
+                <ResourceDictionary Source="1.Common/Style/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="1.Common/Style/PopupStyle.xaml"/>
+                <ResourceDictionary Source="1.Common/Style/VoiceInteractionStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converter:BoolToGridLengthConverter x:Key="BoolToGridLengthConverter"/>
+            <converter:MinusConverter x:Key="MinusConverter"/>
+            <converter:DivideConverter x:Key="DivideConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
