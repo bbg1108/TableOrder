@@ -46,5 +46,43 @@
         <Setter Property="CornerRadius" Value="20,0,20,20"/>
         <Setter Property="Padding" Value="8"/>
         <Setter Property="MaxWidth" Value="900"/>
+
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding STTStatus}" Value="Fail">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard FillBehavior="Stop">
+                            <ColorAnimation
+                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                To="Red"
+                                Duration="0:0:0.2"
+                                AutoReverse="True"
+                                RepeatBehavior="3x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding STTStatus}" Value="Success">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard FillBehavior="Stop">
+                            <ColorAnimation
+                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                To="LimeGreen"
+                                Duration="0:0:0.2"
+                                AutoReverse="True"
+                                RepeatBehavior="3x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

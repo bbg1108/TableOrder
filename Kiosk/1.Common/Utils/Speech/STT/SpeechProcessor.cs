@@ -15,11 +15,12 @@ namespace Kiosk
 {
     public class SpeechProcessor
     {
-        private readonly Dictionary<SpeechCommandEnum, string[]> _Intents;
-        private readonly List<string> _SortedProductNames;
-        private readonly Dictionary<string, int> _KoreanNumbers;
+        private readonly Dictionary<SpeechCommandEnum, string[]> _Intents;  // 의도 모음
+        private readonly List<string> _SortedProductNames;                  // 메뉴 물품 이름 목록
+        private readonly Dictionary<string, int> _KoreanNumbers;            // 한글 - 숫자
 
-        private Dictionary<string, int> _ProductInfo;
+        private Dictionary<string, int> _ProductInfo;                       // 물품의 이름, 수량
+        private STTStatusEnum _Result;                                      // 음성 명령 결과
 
         public SpeechProcessor()
         {
@@ -52,11 +53,18 @@ namespace Kiosk
                     var intent = MatchIntent(command, checkMenu);
                     var messengerType = intent.GetMessengerType();
 
+                    _Result = STTStatusEnum.Fail;
+
                     // SpeechCommandEnum에 등록된 명령 값 따라 메신저 전달
                     if (messengerType != null)
                     {
                         SendMessenger(messengerType.Value, command);
                     }
+
+                    _ = App.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        Messenger.Instance.Send(MessengerEnum.STTResult, _Result);
+                    });
                 }
             }
             catch (Exception ex)
@@ -92,6 +100,7 @@ namespace Kiosk
                                         Messenger.Instance.Send(messengerType, product);
                                     });
                                 }
+                                _Result = STTStatusEnum.Success;
                             }
                         }
                         break;
@@ -105,6 +114,7 @@ namespace Kiosk
                             {
                                 Messenger.Instance.Send(messengerType, category);
                             });
+                            _Result = STTStatusEnum.Success;
                         }
                         break;
                     case MessengerEnum.ClickPay:
@@ -119,6 +129,7 @@ namespace Kiosk
                                 else
                                 {
                                     Messenger.Instance.Send<object>(messengerType, null);
+                                    _Result = STTStatusEnum.Success;
                                 }
                             });
                         }
@@ -133,6 +144,7 @@ namespace Kiosk
                             {
                                 Messenger.Instance.Send(messengerType, paymentMethod);
                             });
+                            _Result = STTStatusEnum.Success;
                         }
                         break;
                     case MessengerEnum.Cancel:
@@ -146,6 +158,7 @@ namespace Kiosk
                             {
                                 Messenger.Instance.Send<object>(messengerType, null);
                             });
+                            _Result = STTStatusEnum.Success;
                         }
                         else if (state == KioskScreenEnum.AlertPopup)
                         {
@@ -153,6 +166,7 @@ namespace Kiosk
                             {
                                 Messenger.Instance.Send(messengerType, state);
                             });
+                            _Result = STTStatusEnum.Success;
                         }
                         else if (state == KioskScreenEnum.KioskMain)
                         {
@@ -163,6 +177,7 @@ namespace Kiosk
                             {
                                 Messenger.Instance.Send<object>(messengerType, null);
                             });
+                            _Result = STTStatusEnum.Success;
                         }
                         break;
                     case MessengerEnum.ClearItems:
@@ -171,6 +186,7 @@ namespace Kiosk
                         {
                             Messenger.Instance.Send<object>(messengerType, null);
                         });
+                        _Result = STTStatusEnum.Success;
                         break;
                 }
             }

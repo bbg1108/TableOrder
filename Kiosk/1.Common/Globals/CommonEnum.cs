@@ -47,6 +47,13 @@ namespace Kiosk
             Barcode,
         }
 
+        public enum STTStatusEnum
+        {
+            None,
+            Fail,
+            Success
+        }
+
         public enum KioskScreenEnum
         {
             First,
@@ -99,6 +106,7 @@ namespace Kiosk
             SelectPaymentMethod,    // 결제 수단 선택시
             SelectNormalOrder,      // 일반주문 선택시
             SelectVoiceOrder,       // 음성주문 선택시
+            STTResult,              // 음성주문 결과
 
             // 음성인식에 필요한 추가 메신저
             MenuNext,               // 메뉴 다음 선택시

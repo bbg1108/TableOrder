@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static Kiosk.CommonEnum;
 
 namespace Kiosk.ViewModels
 {
@@ -20,12 +21,17 @@ namespace Kiosk.ViewModels
 
         private string _TTSMessage;
         public string TTSMessage { get => _TTSMessage; set => SetValue(ref _TTSMessage, value); }
+
+        private STTStatusEnum _STTStatus;
+        public STTStatusEnum STTStatus { get => _STTStatus; set => SetValue(ref _STTStatus, value); }
         #endregion
 
         public VoiceInteractionViewModel(ISpeechRecognizer speechRecognizer, SpeechProcessor speechProcessor)
         {
             _SpeechRecognizer = speechRecognizer;
             _SpeechProcessor = speechProcessor;
+
+            Messenger.Instance.Subscribe<STTStatusEnum>(MessengerEnum.STTResult, this, SetStatusAsync);
         }
 
         public async Task StartSTTAsync()
@@ -97,6 +103,13 @@ namespace Kiosk.ViewModels
         private void OnSTTError(string message)
         {
             FileLogger.Log(new Exception(message), "SpeechRecognizer Exception");
+        }
+
+        private async void SetStatusAsync(STTStatusEnum newStatus)
+        {
+            STTStatus = newStatus;
+            await Task.Delay(100);
+            STTStatus = STTStatusEnum.None;
         }
 
         private async Task RemoveRecognizedTextAsync(CancellationToken token)

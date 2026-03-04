@@ -141,9 +141,8 @@ namespace Kiosk
                 _ = Dispatcher.InvokeAsync(() =>
                 {
                     AlertPopup.Show("알림", " 서버 연결시도 횟수 초과, 관리자에게 문의해주세요.\n 닫기 버튼을 누르면 서버 연결을 다시 시도합니다.");
-                    //Shutdown();
                     popup.RequestClosePopup();
-                    ShowReconnectServerAsync(message); // 재귀
+                    ShowReconnectServerAsync(message);
                 });
             }
         }

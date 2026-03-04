@@ -8,7 +8,7 @@
         xmlns:converters="clr-namespace:Kiosk.Converters"
         xmlns:vm="clr-namespace:Kiosk.ViewModels"
         mc:Ignorable="d"
-        Title="Kiosk" ResizeMode="NoResize"
+        Title="Kiosk" ResizeMode="NoResize" WindowStyle="None"
         Width="1280" Height="800">
     <Window.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
