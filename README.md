@@ -30,18 +30,9 @@
 
 - 일반주문
 
-
-
 https://github.com/user-attachments/assets/3ec10464-f563-4bed-8c8d-1a2e0ac839a9
-
-
-  
 
 - 음성주문
 
-
-
 https://github.com/user-attachments/assets/ef6a08e9-6427-4837-9c58-f3d4b5e039ab
-
-
 
