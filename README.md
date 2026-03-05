@@ -21,6 +21,7 @@
 
 ## 아키텍처
 
+<img width="656" height="163" alt="Arc" src="https://github.com/user-attachments/assets/97b4ef85-adda-4a58-9d84-9c157fd8fd3f" />
 
 
 ## 주요 기능
@@ -30,9 +31,17 @@
 - 일반주문
 
 
+
+https://github.com/user-attachments/assets/3ec10464-f563-4bed-8c8d-1a2e0ac839a9
+
+
   
 
 - 음성주문
+
+
+
+https://github.com/user-attachments/assets/ef6a08e9-6427-4837-9c58-f3d4b5e039ab
 
 
 
