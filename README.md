@@ -21,7 +21,7 @@
 
 ## 아키텍처
 
-<img width="656" height="163" alt="image" src="https://github.com/user-attachments/assets/aeb7df48-3488-4610-b518-0c53f50fd307" />
+<img width="656" height="163" alt="Image" src="https://github.com/user-attachments/assets/5937cbde-63df-4af2-9d7e-de5c9c4c725d" />
 
 ## 주요 기능
 
