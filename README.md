@@ -21,7 +21,7 @@
 
 ## 아키텍처
 
-<img width="656" height="163" alt="Image" src="https://github.com/user-attachments/assets/5937cbde-63df-4af2-9d7e-de5c9c4c725d?v=1" />
+
 
 ## 주요 기능
 
@@ -29,10 +29,10 @@
 
 - 일반주문
 
-https://github.com/user-attachments/assets/b6b2550d-4216-441b-8443-9f1bc8c0dbbc
+
   
 
 - 음성주문
 
-https://github.com/user-attachments/assets/3beb2b22-09e1-451c-9d71-8e56e951da98
+
 
